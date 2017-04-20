@@ -16,7 +16,6 @@ public class SimpleTask implements Runnable {
 
     @Override
     public void run() {
-//        System.out.println("Thread: " + Thread.currentThread().getName() + " with name: " + name + " working ... time - " + new Date());
         LOGGER.info("Thread: " + Thread.currentThread().getName() + " with name: " + name + " working ... time - " + new Date());
     }
 
