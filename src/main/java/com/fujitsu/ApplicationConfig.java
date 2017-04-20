@@ -1,6 +1,8 @@
 package com.fujitsu;
 
 import com.fujitsu.task.SimpleTask;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ public class ApplicationConfig {
     @Bean(name = "task-scheduler")
     public TaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-        taskScheduler.setPoolSize(2);
+        taskScheduler.setPoolSize(10);
         return taskScheduler;
     }
 
@@ -23,6 +25,13 @@ public class ApplicationConfig {
     @Scope("prototype")
     public SimpleTask simpleTask(String name) {
         return new SimpleTask(name);
+    }
+
+    @Bean
+    @Scope("prototype")
+    public CloseableHttpClient httpClient() {
+        //return HttpClients.createDefault();
+        return HttpClientBuilder.create().build();
     }
 
 }
