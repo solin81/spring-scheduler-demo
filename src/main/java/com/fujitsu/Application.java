@@ -18,7 +18,10 @@ public class Application {
     public static void main(String[] args) {
 //        runSimpleTasks();
 //        runSpringHttpTasks();
+        runApacheHttpClientTask();
+    }
 
+    private static void runApacheHttpClientTask() {
         ApacheHttpClientRequestTask task = context.getBean(ApacheHttpClientRequestTask.class);
         taskScheduler.scheduleAtFixedRate(task, 5000L);
     }
@@ -32,10 +35,10 @@ public class Application {
 
         // Schedule the tasks
         taskScheduler.scheduleAtFixedRate(simpleTask1, 5000L);
-        taskScheduler.scheduleAtFixedRate(simpleTask2, 3000L);
+        taskScheduler.scheduleAtFixedRate(simpleTask2, 5000L);
     }
 
-    // Helper method scheduling HTTP task
+    // Helper method scheduling HTTP task (RestTemplate)
     private static void runSpringHttpTasks() {
         // Get second bean - task hitting web page
         SpringHttpRequestTask springHttpRequestTask = context.getBean(SpringHttpRequestTask.class);
